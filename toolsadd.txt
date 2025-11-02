@@ -1,0 +1,7 @@
+if select == '1':
+    clear_screen()
+    # Your network scanner code here
+    print("\033[92m[*] Running Network Scanner...\033[0m")
+    # ... your tool logic ...
+    input("\n\033[97m [*] Press Enter to continue...")
+    clear_screen()
