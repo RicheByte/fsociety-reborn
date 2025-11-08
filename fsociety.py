@@ -77,6 +77,12 @@ try:
 		=== WIRELESS SECURITY ===
 		[4] Wireless Network Tools
 		
+		=== SOCIAL ENGINEERING ===
+		[5] Social Engineering Tools
+		
+		=== MOBILE SECURITY ===
+		[6] Mobile Security Assessment
+		
 		=== INFORMATION ===
 		[90] About FSociety
 		[91] Random Quote
@@ -668,7 +674,207 @@ try:
 					web_running = False
 				
 				else:
-					if web_select:
+					if wireless_select:
+						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
+						time.sleep(1)
+						clear_screen()
+		
+		elif select == '5':
+			clear_screen()
+			se_running = True
+			while se_running:
+				print("\n\033[92m" + "="*70)
+				print("           SOCIAL ENGINEERING TOOLS")
+				print("="*70 + "\033[0m\n")
+				
+				print("\033[97m[1]  Phishing Campaign Generator\033[0m")
+				print("\033[97m     Professional phishing emails with tracking\033[0m\n")
+				
+				print("\033[97m[2]  Credential Harvester\033[0m")
+				print("\033[97m     Fake login pages for credential capture\033[0m\n")
+				
+				print("\033[97m[3]  Bad USB Injector\033[0m")
+				print("\033[97m     Rubber Ducky payload generator\033[0m\n")
+				
+				print("\033[97m[4]  Automated Vishing System\033[0m")
+				print("\033[97m     Voice phishing campaign automation\033[0m\n")
+				
+				print("\033[97m[5]  BeEF Hook Generator\033[0m")
+				print("\033[97m     Browser exploitation framework hooks\033[0m\n")
+				
+				print("\033[97m[6]  AI Pretext Generator\033[0m")
+				print("\033[97m     Advanced social engineering scenarios\033[0m\n")
+				
+				print("\033[91m[0]  Back to Main Menu\033[0m\n")
+				
+				se_select = input("\033[95m [?] Select Social Engineering Tool : \033[0m")
+				
+				if se_select == '1':
+					clear_screen()
+					try:
+						from social_engineering import phishing_campaign_generator
+						phishing_campaign_generator.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '2':
+					clear_screen()
+					try:
+						from social_engineering import credential_harvester
+						credential_harvester.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '3':
+					clear_screen()
+					try:
+						from social_engineering import bad_usb_injector
+						bad_usb_injector.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '4':
+					clear_screen()
+					try:
+						from social_engineering import automated_vishing
+						automated_vishing.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '5':
+					clear_screen()
+					try:
+						from social_engineering import beef_hook_generator
+						beef_hook_generator.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '6':
+					clear_screen()
+					try:
+						from social_engineering import ai_pretext_generator
+						ai_pretext_generator.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif se_select == '0':
+					clear_screen()
+					se_running = False
+				
+				else:
+					if se_select:
+						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
+						time.sleep(1)
+						clear_screen()
+		
+		elif select == '6':
+			clear_screen()
+			mobile_running = True
+			while mobile_running:
+				print("\n\033[92m" + "="*70)
+				print("           MOBILE SECURITY ASSESSMENT TOOLS")
+				print("="*70 + "\033[0m\n")
+				
+				print("\033[97m[1]  Android ADB Exploitation Tool\033[0m")
+				print("\033[97m     Post-exploitation automation via ADB\033[0m\n")
+				
+				print("\033[97m[2]  Frida Script Runner\033[0m")
+				print("\033[97m     Dynamic instrumentation for mobile apps\033[0m\n")
+				
+				print("\033[97m[3]  APK Decompilation & Analysis\033[0m")
+				print("\033[97m     Reverse engineering Android applications\033[0m\n")
+				
+				print("\033[97m[4]  iOS Backup Analyzer\033[0m")
+				print("\033[97m     Extract data from iTunes backups\033[0m\n")
+				
+				print("\033[97m[5]  Mobile Location Spoofer\033[0m")
+				print("\033[97m     GPS simulation for testing\033[0m\n")
+				
+				print("\033[97m[6]  Root/Jailbreak Detection Bypass\033[0m")
+				print("\033[97m     Evade security checks in mobile apps\033[0m\n")
+				
+				print("\033[91m[0]  Back to Main Menu\033[0m\n")
+				
+				mobile_select = input("\033[95m [?] Select Mobile Tool : \033[0m")
+				
+				if mobile_select == '1':
+					clear_screen()
+					try:
+						from mobile import adb_exploitation
+						adb_exploitation.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '2':
+					clear_screen()
+					try:
+						from mobile import frida_runner
+						frida_runner.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '3':
+					clear_screen()
+					try:
+						from mobile import apk_analyzer
+						apk_analyzer.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '4':
+					clear_screen()
+					try:
+						from mobile import ios_backup_analyzer
+						ios_backup_analyzer.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '5':
+					clear_screen()
+					try:
+						from mobile import location_spoofer
+						location_spoofer.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '6':
+					clear_screen()
+					try:
+						from mobile import root_detection_bypass
+						root_detection_bypass.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif mobile_select == '0':
+					clear_screen()
+					mobile_running = False
+				
+				else:
+					if mobile_select:
 						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
 						time.sleep(1)
 						clear_screen()
