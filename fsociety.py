@@ -74,6 +74,9 @@ try:
 		=== WEB APPLICATION SECURITY ===
 		[3] Web Security Tools
 		
+		=== WIRELESS SECURITY ===
+		[4] Wireless Network Tools
+		
 		=== INFORMATION ===
 		[90] About FSociety
 		[91] Random Quote
@@ -386,6 +389,133 @@ try:
 				
 				else:
 					if network_select:
+						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
+						time.sleep(1)
+						clear_screen()
+		
+		# Wireless Security Tools Menu
+		elif select == '4':
+			clear_screen()
+			wireless_running = True
+			while wireless_running:
+				print("\n\033[92m" + "="*70)
+				print("           WIRELESS NETWORK SECURITY TOOLS")
+				print("="*70 + "\033[0m\n")
+				
+				print("\033[97m[1]  WPA/WPA2 Handshake Capture Automator\033[0m")
+				print("\033[97m     Automated 4-way handshake capture and cracking\033[0m\n")
+				
+				print("\033[97m[2]  Evil Twin Framework\033[0m")
+				print("\033[97m     Rogue access point with captive portal for credential harvesting\033[0m\n")
+				
+				print("\033[97m[3]  WPS PIN Brute-Forcer\033[0m")
+				print("\033[97m     Pixie Dust, NULL PIN, and full WPS brute force attacks\033[0m\n")
+				
+				print("\033[97m[4]  Bluetooth Device Scanner\033[0m")
+				print("\033[97m     BLE & Classic Bluetooth enumeration with service discovery\033[0m\n")
+				
+				print("\033[97m[5]  Deauthentication Frame Sender\033[0m")
+				print("\033[97m     Targeted, broadcast, and mass deauth attacks\033[0m\n")
+				
+				print("\033[97m[6]  Rogue AP Detector\033[0m")
+				print("\033[97m     Detect Evil Twin and unauthorized access points\033[0m\n")
+				
+				print("\033[97m[7]  Zigbee Packet Sniffer\033[0m")
+				print("\033[97m     IoT protocol analysis and device enumeration\033[0m\n")
+				
+				print("\033[97m[8]  RFID/NFC Cloner Simulator\033[0m")
+				print("\033[97m     Tag reading, UID extraction, and cloning\033[0m\n")
+				
+				print("\033[91m[0]  Back to Main Menu\033[0m\n")
+				
+				wireless_select = input("\033[95m [?] Select Wireless Tool : \033[0m")
+				
+				if wireless_select == '1':
+					clear_screen()
+					try:
+						from wireless import wpa_handshake_capture
+						wpa_handshake_capture.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '2':
+					clear_screen()
+					try:
+						from wireless import evil_twin_framework
+						evil_twin_framework.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '3':
+					clear_screen()
+					try:
+						from wireless import wps_pin_bruteforce
+						wps_pin_bruteforce.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '4':
+					clear_screen()
+					try:
+						from wireless import bluetooth_scanner
+						bluetooth_scanner.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '5':
+					clear_screen()
+					try:
+						from wireless import deauth_frame_sender
+						deauth_frame_sender.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '6':
+					clear_screen()
+					try:
+						from wireless import rogue_ap_detector
+						rogue_ap_detector.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '7':
+					clear_screen()
+					try:
+						from wireless import zigbee_sniffer
+						zigbee_sniffer.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '8':
+					clear_screen()
+					try:
+						from wireless import rfid_nfc_cloner
+						rfid_nfc_cloner.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif wireless_select == '0':
+					clear_screen()
+					wireless_running = False
+				
+				else:
+					if wireless_select:
 						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
 						time.sleep(1)
 						clear_screen()

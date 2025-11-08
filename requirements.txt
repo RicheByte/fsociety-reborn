@@ -10,11 +10,31 @@ python-nmap>=0.7.1
 scapy>=2.5.0
 python-gvm>=21.0.0
 ipaddress>=1.0.23
+netifaces>=0.11.0
 
 # Web Application Security Testing Dependencies
-# Note: Most web tools use only standard library + requests
-# The following are optional enhancements:
-PyJWT>=2.8.0          # For JWT token verification and generation (optional)
-cryptography>=41.0.0  # For advanced JWT operations (optional)
-pycryptodome>=3.18.0  # For additional crypto operations (optional)
+PyJWT>=2.8.0          # JWT token verification and generation
+cryptography>=41.0.0  # Advanced crypto operations
+pycryptodome>=3.18.0  # Additional crypto operations
+lxml>=4.9.0           # XML/HTML parsing
+
+# OSINT Dependencies
+phonenumbers>=8.13.0  # Phone number intelligence
+whois>=0.9.0          # WHOIS lookups
+shodan>=1.28.0        # Shodan API (requires API key)
+python-whois>=0.8.0   # Alternative WHOIS library
+
+# Wireless Security Dependencies (Linux-specific)
+# Note: These require system packages on Linux
+# - aircrack-ng suite (airmon-ng, airodump-ng, aireplay-ng, aircrack-ng)
+# - hostapd, dnsmasq (for Evil Twin)
+# - reaver, bully, wash (for WPS attacks)
+# - hcitool, bluetoothctl (for Bluetooth)
+# - libnfc-bin, mfoc, mfcuk (for RFID/NFC)
+# - killerbee (for Zigbee - requires specific hardware)
+pyserial>=3.5         # Serial communication for RF devices
+
+# Data Processing & Analysis
+pandas>=1.5.0         # Data analysis (optional but recommended)
+matplotlib>=3.6.0     # Visualization (optional)
 
