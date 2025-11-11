@@ -324,7 +324,10 @@ class SteganographyDetector:
             'jphide': [b'JPHIDE', b'jphide'],
             'f5': [b'F5-steganography'],
             'camouflage': [b'camouflage'],
-            'snow': [b'SNOW', b'whitespace']
+            'snow': [b'SNOW', b'whitespace'],
+            'stegdetect': [b'stegdetect'],
+            'invisible_secrets': [b'invisible secrets'],
+            's-tools': [b's-tools', b'S-TOOLS']
         }
         
         with open(self.file_path, 'rb') as f:
@@ -343,6 +346,43 @@ class SteganographyDetector:
             print(f"\033[92m[+] Detected tool signatures: {', '.join(detected_tools)}\033[0m")
         else:
             print(f"\033[97m[*] No known tool signatures detected\033[0m")
+    
+    def analyze_dct_coefficients(self):
+        print(f"\033[93m[*] Analyzing DCT coefficients (JPEG steganography)...\033[0m")
+        
+        if self.file_type != 'JPEG':
+            return
+        
+        try:
+            from PIL import Image
+            import numpy as np
+            
+            img = Image.open(self.file_path)
+            
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            
+            pixels = np.array(img)
+            
+            height, width = pixels.shape[:2]
+            
+            suspicious_blocks = 0
+            
+            for i in range(0, height - 8, 8):
+                for j in range(0, width - 8, 8):
+                    block = pixels[i:i+8, j:j+8, 0]
+                    
+                    if np.std(block) < 5:
+                        suspicious_blocks += 1
+            
+            if suspicious_blocks > (height * width) // (8 * 8) * 0.1:
+                self.results['dct']['suspicious_blocks'] = suspicious_blocks
+                print(f"\033[92m[+] High number of suspicious DCT blocks: {suspicious_blocks}\033[0m")
+            else:
+                print(f"\033[97m[*] DCT analysis normal\033[0m")
+        
+        except Exception as e:
+            pass
     
     def statistical_analysis(self):
         print(f"\033[93m[*] Performing statistical analysis...\033[0m")

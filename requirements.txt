@@ -44,6 +44,17 @@ plistlib>=0.6.0       # iOS plist parsing (included in Python 3.4+)
 # - volatility (for memory forensics - install separately based on OS)
 Pillow>=9.0.0         # Image analysis for steganography detection
 
+# Password Cracking & Cryptography Dependencies
+# Note: External tools required:
+# - hashcat (GPU-accelerated password cracking)
+# - john (John the Ripper password cracker)
+# - hydra (online brute-force tool)
+# Install via package manager: apt-get install hashcat john hydra
+pyotp>=2.9.0          # TOTP/HOTP generation for 2FA testing
+qrcode>=7.4.0         # QR code generation
+pyzbar>=0.1.9         # QR code decoding (requires system libzbar)
+scipy>=1.10.0         # Statistical tests for entropy analysis
+
 # Data Processing & Analysis
 pandas>=1.5.0         # Data analysis (optional but recommended)
 matplotlib>=3.6.0     # Visualization (optional)

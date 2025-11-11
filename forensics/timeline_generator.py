@@ -325,6 +325,23 @@ class TimelineGenerator:
         
         print(f"\033[92m[+] Found {history_found} history entries\033[0m")
     
+    def parse_usb_history(self, registry_path):
+        print(f"\033[93m[*] Parsing USB device history...\033[0m")
+        
+        try:
+            if os.path.exists(registry_path):
+                stat_info = os.stat(registry_path)
+                
+                self.events.append({
+                    'timestamp': datetime.fromtimestamp(stat_info.st_mtime),
+                    'source': 'USB Device',
+                    'description': f"USB device registry modified: {os.path.basename(registry_path)}"
+                })
+                
+                print(f"\033[92m[+] USB history extracted\033[0m")
+        except Exception as e:
+            print(f"\033[91m[!] Error: {e}\033[0m")
+    
     def extract_event_id(self, line):
         match = re.search(r'EventID[:\s]+(\d+)', line, re.IGNORECASE)
         return match.group(1) if match else ''

@@ -126,6 +126,36 @@ class FileCarving:
                 'footer': [],
                 'ext': '.pf',
                 'name': 'Windows Prefetch'
+            },
+            'vmdk': {
+                'header': [b'KDMV'],
+                'footer': [],
+                'ext': '.vmdk',
+                'name': 'VMware Virtual Disk'
+            },
+            'pcap': {
+                'header': [b'\xD4\xC3\xB2\xA1', b'\xA1\xB2\xC3\xD4'],
+                'footer': [],
+                'ext': '.pcap',
+                'name': 'Packet Capture'
+            },
+            'eml': {
+                'header': [b'From:', b'Return-Path:', b'Received:'],
+                'footer': [],
+                'ext': '.eml',
+                'name': 'Email Message'
+            },
+            'rar': {
+                'header': [b'Rar!\x1A\x07'],
+                'footer': [],
+                'ext': '.rar',
+                'name': 'RAR Archive'
+            },
+            '7z': {
+                'header': [b'7z\xBC\xAF\x27\x1C'],
+                'footer': [],
+                'ext': '.7z',
+                'name': '7-Zip Archive'
             }
         }
         

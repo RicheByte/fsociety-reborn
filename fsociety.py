@@ -86,6 +86,9 @@ try:
 		=== DIGITAL FORENSICS ===
 		[7] Forensics & Incident Response
 		
+		=== PASSWORD & CRYPTOGRAPHY ===
+		[8] Password Cracking & Crypto Analysis
+		
 		=== INFORMATION ===
 		[90] About FSociety
 		[91] Random Quote
@@ -954,6 +957,82 @@ try:
 				
 				else:
 					if forensics_select:
+						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
+						time.sleep(1)
+						clear_screen()
+		
+		elif select == '8':
+			clear_screen()
+			crypto_running = True
+			while crypto_running:
+				print("\n\033[92m" + "="*70)
+				print("     PASSWORD CRACKING & CRYPTOGRAPHY ANALYSIS")
+				print("="*70 + "\033[0m\n")
+				print("\033[97m  [1] Hashcat Automation Wrapper (GPU Password Cracking)\033[0m")
+				print("\033[97m  [2] John the Ripper Automation (Multi-Mode Cracking)\033[0m")
+				print("\033[97m  [3] Hydra Brute-Force Launcher (Online Attacks)\033[0m")
+				print("\033[97m  [4] 2FA Bypass Tester (TOTP/HOTP/SMS Testing)\033[0m")
+				print("\033[97m  [5] Cryptographic Entropy Analyzer (Randomness Testing)\033[0m")
+				print("\033[97m  [0] Back to Main Menu\033[0m")
+				
+				crypto_select = input(f"\n\033[95m [?] Choose Any Option : \033[0m")
+				
+				if crypto_select == '1':
+					clear_screen()
+					try:
+						from crypto import hashcat_automation
+						hashcat_automation.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif crypto_select == '2':
+					clear_screen()
+					try:
+						from crypto import john_automation
+						john_automation.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif crypto_select == '3':
+					clear_screen()
+					try:
+						from crypto import hydra_launcher
+						hydra_launcher.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif crypto_select == '4':
+					clear_screen()
+					try:
+						from crypto import twofa_bypass
+						twofa_bypass.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif crypto_select == '5':
+					clear_screen()
+					try:
+						from crypto import entropy_analyzer
+						entropy_analyzer.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif crypto_select == '0':
+					clear_screen()
+					crypto_running = False
+				
+				else:
+					if crypto_select:
 						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
 						time.sleep(1)
 						clear_screen()

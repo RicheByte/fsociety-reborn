@@ -412,6 +412,77 @@ class RootkitScanner:
         except Exception as e:
             print(f"\033[91m[!] Error: {e}\033[0m")
     
+    def check_boot_integrity(self):
+        print(f"\033[93m[*] Checking boot sector integrity...\033[0m")
+        
+        try:
+            result = subprocess.run(['fdisk', '-l'], capture_output=True, text=True, timeout=10)
+            
+            if result.stdout:
+                boot_devices = []
+                
+                for line in result.stdout.split('\n'):
+                    if '/dev/' in line and '*' in line:
+                        parts = line.split()
+                        if parts:
+                            boot_devices.append(parts[0])
+                
+                self.findings['boot_devices'] = boot_devices
+                
+                print(f"\033[92m[+] Found {len(boot_devices)} boot devices\033[0m")
+        
+        except Exception as e:
+            pass
+    
+    def check_cron_backdoors(self):
+        print(f"\033[93m[*] Checking for cron backdoors...\033[0m")
+        
+        cron_paths = [
+            '/etc/crontab',
+            '/etc/cron.d',
+            '/var/spool/cron',
+            '/var/spool/cron/crontabs'
+        ]
+        
+        suspicious_crons = []
+        
+        for cron_path in cron_paths:
+            if os.path.exists(cron_path):
+                try:
+                    if os.path.isfile(cron_path):
+                        with open(cron_path, 'r') as f:
+                            content = f.read()
+                        
+                        if any(keyword in content.lower() for keyword in ['nc ', 'netcat', 'bash -i', '/dev/tcp', 'curl ', 'wget ']):
+                            suspicious_crons.append({
+                                'file': cron_path,
+                                'content': content[:200]
+                            })
+                            print(f"\033[91m[!] Suspicious cron: {cron_path}\033[0m")
+                    
+                    elif os.path.isdir(cron_path):
+                        for file in os.listdir(cron_path):
+                            file_path = os.path.join(cron_path, file)
+                            try:
+                                with open(file_path, 'r') as f:
+                                    content = f.read()
+                                
+                                if any(keyword in content.lower() for keyword in ['nc ', 'netcat', 'bash -i', '/dev/tcp']):
+                                    suspicious_crons.append({
+                                        'file': file_path,
+                                        'content': content[:200]
+                                    })
+                                    print(f"\033[91m[!] Suspicious cron: {file_path}\033[0m")
+                            except:
+                                pass
+                except:
+                    pass
+        
+        if suspicious_crons:
+            self.findings['cron_backdoors'] = suspicious_crons
+        
+        print(f"\033[92m[+] Cron check complete\033[0m")
+    
     def generate_report(self):
         os.makedirs(self.output_dir, exist_ok=True)
         

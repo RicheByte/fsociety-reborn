@@ -339,6 +339,51 @@ class VolatilityAutomation:
         
         print(f"\033[92m[+] Artifacts extracted\033[0m")
     
+    def analyze_drivers(self):
+        print(f"\033[93m[*] Analyzing loaded drivers...\033[0m")
+        
+        driverscan_output = self.execute_volatility('driverscan')
+        modules_output = self.execute_volatility('modules')
+        
+        drivers = []
+        suspicious_drivers = []
+        
+        if driverscan_output:
+            for line in driverscan_output.split('\n')[2:]:
+                if line.strip():
+                    parts = line.split()
+                    if len(parts) >= 3:
+                        driver_name = parts[-1] if parts else ''
+                        
+                        if any(keyword in driver_name.lower() for keyword in ['rootkit', 'hack', 'hidden']):
+                            suspicious_drivers.append(driver_name)
+                        
+                        drivers.append(driver_name)
+        
+        self.results['drivers']['total'] = len(drivers)
+        self.results['drivers']['suspicious'] = suspicious_drivers
+        
+        print(f"\033[92m[+] Found {len(drivers)} drivers ({len(suspicious_drivers)} suspicious)\033[0m")
+    
+    def analyze_mutexes(self):
+        print(f"\033[93m[*] Analyzing mutex objects...\033[0m")
+        
+        mutantscan_output = self.execute_volatility('mutantscan')
+        
+        mutexes = []
+        
+        if mutantscan_output:
+            for line in mutantscan_output.split('\n')[2:]:
+                if line.strip():
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        mutex_name = parts[-1]
+                        mutexes.append(mutex_name)
+        
+        self.results['mutexes'] = mutexes[:100]
+        
+        print(f"\033[92m[+] Found {len(mutexes)} mutex objects\033[0m")
+    
     def run_full_analysis(self):
         print(f"\033[93m[*] Starting full memory analysis...\033[0m\n")
         
@@ -355,6 +400,8 @@ class VolatilityAutomation:
         self.scan_files()
         self.extract_command_history()
         self.extract_artifacts()
+        self.analyze_drivers()
+        self.analyze_mutexes()
         
         self.generate_report()
     
