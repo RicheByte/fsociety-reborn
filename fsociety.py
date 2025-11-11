@@ -83,6 +83,9 @@ try:
 		=== MOBILE SECURITY ===
 		[6] Mobile Security Assessment
 		
+		=== DIGITAL FORENSICS ===
+		[7] Forensics & Incident Response
+		
 		=== INFORMATION ===
 		[90] About FSociety
 		[91] Random Quote
@@ -875,6 +878,82 @@ try:
 				
 				else:
 					if mobile_select:
+						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
+						time.sleep(1)
+						clear_screen()
+		
+		elif select == '7':
+			clear_screen()
+			forensics_running = True
+			while forensics_running:
+				print("\n\033[92m" + "="*70)
+				print("     DIGITAL FORENSICS & INCIDENT RESPONSE")
+				print("="*70 + "\033[0m\n")
+				print("\033[97m  [1] Volatility Automation Wrapper (Memory Forensics)\033[0m")
+				print("\033[97m  [2] File Carving Tool (Recover Deleted Files)\033[0m")
+				print("\033[97m  [3] Timeline Generator (Event Timeline)\033[0m")
+				print("\033[97m  [4] Steganography Detection Tool\033[0m")
+				print("\033[97m  [5] Rootkit Detection Scanner\033[0m")
+				print("\033[97m  [0] Back to Main Menu\033[0m")
+				
+				forensics_select = input(f"\n\033[95m [?] Choose Any Option : \033[0m")
+				
+				if forensics_select == '1':
+					clear_screen()
+					try:
+						from forensics import volatility_automation
+						volatility_automation.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif forensics_select == '2':
+					clear_screen()
+					try:
+						from forensics import file_carving
+						file_carving.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif forensics_select == '3':
+					clear_screen()
+					try:
+						from forensics import timeline_generator
+						timeline_generator.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif forensics_select == '4':
+					clear_screen()
+					try:
+						from forensics import steganography_detector
+						steganography_detector.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif forensics_select == '5':
+					clear_screen()
+					try:
+						from forensics import rootkit_scanner
+						rootkit_scanner.run()
+					except Exception as e:
+						print(f"\033[91m[!] Error: {str(e)}\033[0m")
+					input("\n\033[97m [*] Press Enter to continue...\033[0m")
+					clear_screen()
+				
+				elif forensics_select == '0':
+					clear_screen()
+					forensics_running = False
+				
+				else:
+					if forensics_select:
 						print("\n\033[91m [!] Invalid option. Please try again.\033[0m")
 						time.sleep(1)
 						clear_screen()
